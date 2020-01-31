@@ -1,5 +1,4 @@
 import * as fs from 'fs';
-import { Configuration } from './configuration';
 
 export class ConfigurationManager {
 

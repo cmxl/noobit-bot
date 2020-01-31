@@ -3,6 +3,7 @@
     "version": "0.0.0",
     "main": "./dist/index.js",
     "scripts": {
+        "build": "tsc -p ./src",
         "start": "tsc -p ./src && node ./dist/index.js"
     },
     "private": true,
