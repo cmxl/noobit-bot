@@ -1,14 +1,14 @@
 {
     "name": "web-app",
     "version": "0.0.0",
-    "main": "./dist/main.js",
+    "main": "./dist/index.js",
     "scripts": {
-        "start": "tsc -p ./src && node ./dist/main.js"
+        "start": "tsc -p ./src && node ./dist/index.js"
     },
     "private": true,
     "dependencies": {
         "discord.js": "11.5.1",
-        "tmi": "2.0.0"
+        "tmi.js": "1.5.0"
     },
     "devDependencies": {
         "@types/node": "^13.5.3",
