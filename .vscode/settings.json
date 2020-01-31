@@ -1,0 +1,8 @@
+{
+    "typescript.tsc.autoDetect": "on",
+    "files.exclude": {
+        "**/*.js": { "when": "$(basename).ts" },
+        "**/*.js.map": true,
+        "**dist/**": true
+    }
+}
