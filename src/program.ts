@@ -1,21 +1,23 @@
 import { DiscordClient } from "./discord/discord-client";
 import { ConfigurationManager } from "./configuration/configuration-manager";
 import { DiscordClientConfig } from "./discord/discord-client.config";
-import { TwitchConfig } from "./twitch/twitch-client.config";
-import { TwitchClient } from "./twitch/twitch-client";
+import { MessageParser } from "./discord/parsing/message.parser";
+import { CommandExecutor } from "./discord/commands/command.executor";
 
 export class Program {
-    public static async main(...args: string[]): Promise<void> {
+    public static async main(...args: string[]): Promise<void> { 
 
-        const configurationManager = new ConfigurationManager();
+        const configurationManager = new ConfigurationManager();      
         const config = await configurationManager.load<DiscordClientConfig>('./config/discord.json');
-
         const discord = new DiscordClient(config);
-        await discord.connect();
-        await discord.post('Hallo Discord!', config.channel);
+        const messageParser = new MessageParser();
+        const commandExecutor = new CommandExecutor(discord);
 
-        const twitchConfig = await configurationManager.load<TwitchConfig>('./config/twitch.json');
-        const twitch = new TwitchClient(twitchConfig);
-        await twitch.connect();
+        discord.setMessageCallback(async (message) => {
+            const result = messageParser.parse(message);
+            await commandExecutor.execute(result.command);
+        });
+
+        await discord.connect();
     }
 }
