@@ -13,7 +13,9 @@ export class HelpCommand implements Command {
     public getHelpText(): string {
         return `You may try using following commands:
                 !greet
-                !help`;
+                !help
+                !cat
+                !dog`;
     }
 
 }

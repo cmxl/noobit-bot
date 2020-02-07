@@ -4,6 +4,8 @@ import { Command } from '../commands/command';
 import { NoopCommand } from '../commands/noop.command';
 import { GreetCommand } from '../commands/greet.command';
 import { HelpCommand } from '../commands/help.command';
+import { CatCommand } from '../commands/cat.command';
+import { DogCommand } from '../commands/dog.command';
 
 export class MessageParser {
 
@@ -18,7 +20,11 @@ export class MessageParser {
 
         switch (command) {
             case 'greet':
-                return new GreetCommand(args, message.author, message.channel);
+                return new GreetCommand(args, message.author, message.mentions, message.channel);
+            case 'cat':
+                return new CatCommand(args, message.channel);
+            case 'dog':
+                return new DogCommand(args, message.channel);
             case 'help':
                 return new HelpCommand(args, message.channel);
             default:

@@ -3,5 +3,5 @@ export interface DiscordClientConfig {
     client_id: number;
     client_secret: string;
     redirect_uri: string;
-    channel: string;
+    default_channel: string;
 }

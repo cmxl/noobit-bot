@@ -3,6 +3,8 @@ import { Command } from "./command";
 import { NoopCommand } from "./noop.command";
 import { GreetCommand } from "./greet.command";
 import { HelpCommand } from "./help.command";
+import { DogCommand } from "./dog.command";
+import { CatCommand } from "./cat.command";
 
 export class CommandExecutor  {
     constructor(private _discordClient: DiscordClient) { }
@@ -12,7 +14,13 @@ export class CommandExecutor  {
             return;
         
         if(command instanceof GreetCommand)
-            await this._discordClient.post(`Say hi to ${command.user.username}!`, command.channel.id);
+            await this._discordClient.post(command.createMessage(), command.channel.id);
+
+        if(command instanceof DogCommand)
+            await this._discordClient.post(await command.getImageUrl(), command.channel.id);
+
+        if(command instanceof CatCommand)
+            await this._discordClient.post(await command.getImageUrl(), command.channel.id);
 
         if(command instanceof HelpCommand)
             await this._discordClient.post(command.getHelpText(), command.channel.id);
