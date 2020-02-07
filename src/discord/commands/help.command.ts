@@ -1,5 +1,6 @@
 import { Command } from "./command";
 import { Channel } from "discord.js";
+import { DiscordClient } from "../discord-client";
 
 export class HelpCommand implements Command {
     public readonly arguments: string[];
@@ -17,5 +18,9 @@ export class HelpCommand implements Command {
                 !cat
                 !dog`;
     }
+
+    public async execute(discord: DiscordClient): Promise<void> {
+        await discord.post(this.getHelpText(), this.channel.id);
+    }   
 
 }

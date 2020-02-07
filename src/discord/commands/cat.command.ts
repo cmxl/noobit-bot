@@ -1,6 +1,7 @@
 import { Command } from "./command";
 import { Channel } from "discord.js";
 import { HttpClient } from "../../http/http.client";
+import { DiscordClient } from "../discord-client";
 
 export class CatCommand implements Command {
     public readonly arguments: string[];
@@ -18,4 +19,7 @@ export class CatCommand implements Command {
         return json.file;
     }
 
+    public async execute(discord: DiscordClient): Promise<void> {
+        await discord.post(await this.getImageUrl(), this.channel.id);
+    }
 }

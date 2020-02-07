@@ -1,5 +1,6 @@
 import { Command } from "./command";
 import { User, Channel, Message, MessageMentions } from "discord.js";
+import { DiscordClient } from "../discord-client";
 
 export class GreetCommand implements Command {
 
@@ -35,4 +36,9 @@ export class GreetCommand implements Command {
         usersText += ` and ${last}`;
         return usersText;
     }
+
+    public async execute(discord: DiscordClient): Promise<void> {
+        await discord.post(this.createMessage(), this.channel.id);
+    }   
+
 }
