@@ -13,10 +13,11 @@ export class HelpCommand implements Command {
 
     public getHelpText(): string {
         return `You may try using following commands:
-                !greet
+                !fact
+                !greet [...@{mention}]
                 !help
-                !cat
-                !dog`;
+                !meow
+                !woof`;
     }
 
     public async execute(discord: DiscordClient): Promise<void> {
