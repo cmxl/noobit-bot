@@ -14,9 +14,9 @@ export class CatCommand implements Command {
     }
 
     public async getImageUrl(): Promise<string> {
-        const response = await this._httpClient.getResponseBody('https://aws.random.cat/meow');
-        const json = JSON.parse(response) as { file: string };
-        return json.file;
+        const response = await this._httpClient.getResponseBody('https://api.thecatapi.com/v1/images/search');
+        const json = JSON.parse(response) as { url: string }[];
+        return json[0].url;
     }
 
     public async execute(discord: DiscordClient): Promise<void> {
