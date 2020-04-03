@@ -7,6 +7,8 @@ import { HelpCommand } from '../commands/help.command';
 import { CatCommand } from '../commands/cat.command';
 import { DogCommand } from '../commands/dog.command';
 import { FactCommand } from '../commands/fact.command';
+import { NutritionCommand } from '../commands/nutrition.command';
+import { MedlanCommand } from '../commands/medlan.command';
 
 export class MessageParser {
 
@@ -19,17 +21,22 @@ export class MessageParser {
         const command = params.splice(0, 1)[0];
         const args = params;
 
+        console.debug(content, command, args);
         switch (command) {
             case 'greet':
                 return new GreetCommand(args, message.author, message.mentions, message.channel);
             case 'meow':
                 return new CatCommand(args, message.channel);
+            case 'medlan':
+                return new MedlanCommand(args, message.channel);
             case 'woof':
                 return new DogCommand(args, message.channel);
             case 'help':
                 return new HelpCommand(args, message.channel);
             case 'fact':
                 return new FactCommand(args, message.channel);
+            case 'calories':
+                return new NutritionCommand(args, message.channel);
             default:
                 return new NoopCommand();
         }

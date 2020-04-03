@@ -1,4 +1,5 @@
 import *  as crypto from 'crypto';
+
 export class RNG {
     private static readonly _rng = new RNG();
 
