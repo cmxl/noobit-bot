@@ -16,6 +16,7 @@ export class HelpCommand implements Command {
                 !fact
                 !greet [...@{mention}]
                 !help
+                !medlan
                 !meow
                 !woof`;
     }
