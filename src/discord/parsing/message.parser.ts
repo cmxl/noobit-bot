@@ -1,13 +1,14 @@
 import * as Discord from 'discord.js';
-import { MessageParseResult } from './message.result';
-import { Command } from '../commands/command';
-import { NoopCommand } from '../commands/noop.command';
-import { GreetCommand } from '../commands/greet.command';
-import { HelpCommand } from '../commands/help.command';
 import { CatCommand } from '../commands/cat.command';
+import { Command } from '../commands/command';
 import { DogCommand } from '../commands/dog.command';
 import { FactCommand } from '../commands/fact.command';
+import { GreetCommand } from '../commands/greet.command';
+import { HelpCommand } from '../commands/help.command';
 import { MedlanCommand } from '../commands/medlan.command';
+import { NoobitCommand } from '../commands/noobit.command';
+import { NoopCommand } from '../commands/noop.command';
+import { MessageParseResult } from './message.result';
 
 export class MessageParser {
 
@@ -34,6 +35,8 @@ export class MessageParser {
                 return new HelpCommand(args, message.channel);
             case 'fact':
                 return new FactCommand(args, message.channel);
+            case 'noobit':
+                return new NoobitCommand(args, message.channel);
             default:
                 return new NoopCommand();
         }
